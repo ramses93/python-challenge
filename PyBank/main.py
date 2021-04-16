@@ -15,13 +15,19 @@ def generateAnalysis(data):
 
 
 if __name__ == "__main__":
-    analysis = {}
-
-    analysis["totalMonths"] = 0
-    analysis["totalChange"] = 0
-    analysis["averageChange"] = 0
-    analysis["greatestIncrease"] = { "date": "", "amount": 0}
-    analysis["greatestDecrease"] = { "date": "", "amount": 0}
+    analysis = {
+        "totalMonths": 0,
+        "totalChange": 0,
+        "averageChange": "", # Store as string since we need to format accordingly
+        "greatestIncrease": {
+            "date": "",
+            "amount": 0
+        },
+        "greatestDecrease": {
+            "date": "",
+            "amount": 0
+        }
+    }
 
     with open('Resources/budget_data.csv') as budgetFile:
         csvReader = csv.reader(budgetFile, delimiter= ',')
