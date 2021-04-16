@@ -1,19 +1,27 @@
-import numpy as np
 import csv
 
+def generateAnalysis(candidates, totalVotes):
+    winningCandidate = ""
+    winningNumberofVotes = 0
+    
+    resultsString = ""
 
-def printAnalysis(candidates, totalVotes):
-    print("Election Results")
-    print("-------------------------")
-    print("Total Votes: " + str(totalVotes))
-    print("-------------------------")
+    resultsString += "Election Results\n"
+    resultsString += "-------------------------\n"
+    resultsString += "Total Votes: " + str(totalVotes) + "\n"
+    resultsString += "-------------------------\n"
 
     for key, value in candidates.items():
-        print(key + ": " + '{:.3f}'.format(round(value / totalVotes*100, 3)) + "% (" + str(value) + ")")
+        if value > winningNumberofVotes:
+            winningNumberofVotes = value
+            winningCandidate = key
+        resultsString += key + ": " + '{:.3f}'.format(round(value / totalVotes*100, 3)) + "% (" + str(value) + ")\n"
 
-    print("-------------------------")
-    print("Winner: ")
-    print("-------------------------")
+    resultsString += "-------------------------\n"
+    resultsString += "Winner: "+ winningCandidate + "\n"
+    resultsString += "-------------------------\n"
+
+    return resultsString
 
 if __name__ == "__main__":
     candidates = {}
@@ -27,15 +35,17 @@ if __name__ == "__main__":
         next(csvReader)
 
         for row in csvReader:
-            i = i+1
+            i += 1
             if row[2] in candidates:
-                candidates[row[2]] = candidates[row[2]] + 1
+                candidates[row[2]] += 1
             else:
                 candidates[row[2]] = 1
 
-    print(candidates)
-    print(i)
+    outputString = generateAnalysis(candidates, i)
 
-    printAnalysis(candidates, i)
+    with open('analysis/output.txt', 'w') as outputFile:
+        outputFile.write(outputString)
+
+    print(outputString)
 
 
