@@ -1,25 +1,25 @@
 import csv
 
 def generateAnalysis(candidates, totalVotes):
-    winningCandidate = ""
+    winningCandidate = ''
     winningNumberofVotes = 0
     
-    resultsString = ""
+    resultsString = ''
 
-    resultsString += "Election Results\n"
-    resultsString += "-------------------------\n"
-    resultsString += "Total Votes: " + str(totalVotes) + "\n"
-    resultsString += "-------------------------\n"
+    resultsString += 'Election Results\n'
+    resultsString += '-------------------------\n'
+    resultsString += f'Total Votes: {str(totalVotes)}\n'
+    resultsString += '-------------------------\n'
 
     for key, value in candidates.items():
         if value > winningNumberofVotes:
             winningNumberofVotes = value
             winningCandidate = key
-        resultsString += key + ": " + '{:.3f}'.format(round(value / totalVotes*100, 3)) + "% (" + str(value) + ")\n"
+        resultsString += f'{key}: {"{:.3f}".format(round(value / totalVotes*100, 3))}% ({str(value)})\n'
 
-    resultsString += "-------------------------\n"
-    resultsString += "Winner: "+ winningCandidate + "\n"
-    resultsString += "-------------------------\n"
+    resultsString += '-------------------------\n'
+    resultsString += f'Winner: {winningCandidate}\n'
+    resultsString += '-------------------------\n'
 
     return resultsString
 
