@@ -3,16 +3,15 @@ import csv
 def generateAnalysis(data):
     resultsString = ""
 
-    resultsString += "Financial Analysis\n"
-    resultsString += "----------------------------\n"
-    resultsString += "Total Months: " + str(data["totalMonths"]) + "\n"
-    resultsString += "Total: $" + str(data["totalChange"]) + "\n"
-    resultsString += "Average  Change: $" + data["averageChange"] + "\n"
-    resultsString += "Greatest Increase in Profits: " + data["greatestIncrease"]["date"] + " ($" + str(data["greatestIncrease"]["amount"]) + ")\n"
-    resultsString += "Greatest Decrease in Profits: " + data["greatestDecrease"]["date"] + " ($" + str(data["greatestDecrease"]["amount"]) + ")\n"
+    resultsString += 'Financial Analysis\n'
+    resultsString += '----------------------------\n'
+    resultsString += f'Total Months: {str(data["totalMonths"])}\n'
+    resultsString += f'Total: ${str(data["totalChange"])}\n'
+    resultsString += f'Average  Change: ${data["averageChange"]}\n'
+    resultsString += f'Greatest Increase in Profits: {data["greatestIncrease"]["date"]} (${str(data["greatestIncrease"]["amount"])})\n'
+    resultsString += f'Greatest Decrease in Profits: {data["greatestDecrease"]["date"]} (${str(data["greatestDecrease"]["amount"])})\n'
 
     return resultsString
-
 
 if __name__ == "__main__":
     analysis = {
